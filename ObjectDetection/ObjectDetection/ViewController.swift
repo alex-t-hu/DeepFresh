@@ -9,17 +9,13 @@ import UIKit
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var btnRun: UIButton!
-    @IBOutlet weak var btnNext: UIButton!
-    
-    private let testImages = ["test1.png", "test2.jpg", "test3.png"]
-    private var imgIndex = 0
 
     private var image : UIImage?
     private var inferencer = ObjectDetector()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        image = UIImage(named: testImages[imgIndex])!
+        image = UIImage(named: "logo")!
         if let iv = imageView {
             iv.image = image
             btnRun.setTitle("Detect", for: .normal)
@@ -28,44 +24,36 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 
     @IBAction func runTapped(_ sender: Any) {
         btnRun.isEnabled = false
-        btnRun.setTitle("Running the model...", for: .normal)
-
+        btnRun.setTitle("Running ...", for: .normal)
         let resizedImage = image!.resized(to: CGSize(width: CGFloat(PrePostProcessor.inputWidth), height: CGFloat(PrePostProcessor.inputHeight)))
-        
+        print("line 29")
         let imgScaleX = Double(image!.size.width / CGFloat(PrePostProcessor.inputWidth));
         let imgScaleY = Double(image!.size.height / CGFloat(PrePostProcessor.inputHeight));
-        
+        print ("imgScaleX", imgScaleX)
+    
         let ivScaleX : Double = (image!.size.width > image!.size.height ? Double(imageView.frame.size.width / image!.size.width) : Double(imageView.frame.size.height / image!.size.height))
         let ivScaleY : Double = (image!.size.height > image!.size.width ? Double(imageView.frame.size.height / image!.size.height) : Double(imageView.frame.size.width / image!.size.width))
-
+        print("ivScaleX", ivScaleX)
         let startX = Double((imageView.frame.size.width - CGFloat(ivScaleX) * image!.size.width)/2)
         let startY = Double((imageView.frame.size.height -  CGFloat(ivScaleY) * image!.size.height)/2)
-
+        print("startX", startX)
         guard var pixelBuffer = resizedImage.normalized() else {
             return
         }
-        
+        print("line 42")
         DispatchQueue.global().async {
             guard let outputs = self.inferencer.module.detect(image: &pixelBuffer) else {
                 return
             }
-            
+            print("line 48")
             let nmsPredictions = PrePostProcessor.outputsToNMSPredictions(outputs: outputs, imgScaleX: imgScaleX, imgScaleY: imgScaleY, ivScaleX: ivScaleX, ivScaleY: ivScaleY, startX: startX, startY: startY)
-            
+            print("HERERERER")
             DispatchQueue.main.async {
                 PrePostProcessor.showDetection(imageView: self.imageView, nmsPredictions: nmsPredictions, classes: self.inferencer.classes)
                 self.btnRun.isEnabled = true
                 self.btnRun.setTitle("Detect", for: .normal)
             }
         }
-    }
-
-    @IBAction func nextTapped(_ sender: Any) {
-        PrePostProcessor.cleanDetection(imageView: imageView)
-        imgIndex = (imgIndex + 1) % testImages.count
-        btnNext.setTitle(String(format: "Text Image %d/%d", imgIndex + 1, testImages.count), for:.normal)
-        image = UIImage(named: testImages[imgIndex])!
-        imageView.image = image
     }
 
     @IBAction func photosTapped(_ sender: Any) {

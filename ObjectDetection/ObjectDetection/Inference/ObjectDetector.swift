@@ -8,15 +8,23 @@ import UIKit
 
 class ObjectDetector {
     lazy var module: InferenceModule = {
-        if let filePath = Bundle.main.path(forResource: "yolov5s.torchscript", ofType: "ptl"),
-            let module = InferenceModule(fileAtPath: filePath) {
-            return module
+        if let filePath = Bundle.main.path(forResource: "yolov5s.torchscript", ofType: "ptl"){
+            if let module = InferenceModule(fileAtPath: filePath)
+            {
+                print("blah")
+                return module
+            }
+            else {
+                fatalError("Failed to load model!")
+            }
         } else {
             fatalError("Failed to load model!")
         }
+        print("blah")
     }()
     
     lazy var classes: [String] = {
+        print("blah")
         if let filePath = Bundle.main.path(forResource: "classes", ofType: "txt"),
             let classes = try? String(contentsOfFile: filePath) {
             return classes.components(separatedBy: .newlines)

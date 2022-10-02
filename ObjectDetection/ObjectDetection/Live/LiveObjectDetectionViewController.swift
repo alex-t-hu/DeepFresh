@@ -11,15 +11,23 @@ class LiveObjectDetectionViewController: ViewController {
     @IBOutlet var cameraView: CameraPreviewView!
     @IBOutlet var benchmarkLabel: UILabel!
     @IBOutlet var indicator: UIActivityIndicatorView!
-
+//    @IBOutlet weak var btnback: UIButton!
+    @IBOutlet var btnBack: UINavigationItem!
+    
     private let delayMs: Double = 1000
     private var prevTimestampMs: Double = 0.0
     private var cameraController = CameraController()
     private var imageViewLive =  UIImageView()
     private var inferencer = ObjectDetector()
     
+    @IBAction func onBackClicked(_: Any) {
+        navigationController?.popViewController(animated: true)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+//        btnBack.setTitle("Back", for: .normal)
         cameraController.configPreviewLayer(cameraView)
         imageViewLive.frame = CGRect(x: 0, y: 0, width: cameraView.frame.size.width, height: cameraView.frame.size.height)
         cameraView.addSubview(imageViewLive)
@@ -70,7 +78,8 @@ class LiveObjectDetectionViewController: ViewController {
         cameraController.stopSession()
     }
 
-    @IBAction func onBackClicked(_: Any) {
-        navigationController?.popViewController(animated: true)
-    }
+    
+    
+    
+    
 }

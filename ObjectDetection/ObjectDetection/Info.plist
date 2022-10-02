@@ -5,7 +5,7 @@
 	<key>NSCameraUsageDescription</key>
 	<string>so you can choose a photo or take a picture for object detection</string>
 	<key>CFBundleDisplayName</key>
-	<string>YOLOv5</string>
+	<string>DeepFresh</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>

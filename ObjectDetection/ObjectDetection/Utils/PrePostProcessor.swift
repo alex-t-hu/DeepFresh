@@ -19,7 +19,7 @@ class PrePostProcessor : NSObject {
 
     // model output is of size 25200*(num_of_class+5)
     static let outputRow = 25200 // as decided by the YOLOv5 model for input image of size 640*640
-    static let outputColumn = 85 // left, top, right, bottom, score and 80 class probability
+    static let outputColumn = 23 // left, top, right, bottom, score and 80 class probability
     static let threshold : Float = 0.35 // score above which a detection is generated
     static let nmsLimit = 15 // max number of detections
     
