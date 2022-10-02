@@ -84,6 +84,8 @@
 		FAB28D7528E957AE0057DF16 /* aicook1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = aicook1.png; sourceTree = "<group>"; };
 		FAB28D7628E957AE0057DF16 /* aicook3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = aicook3.png; sourceTree = "<group>"; };
 		FAB28D7728E957AE0057DF16 /* aicook4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = aicook4.png; sourceTree = "<group>"; };
+		FAB28D8128E98F1C0057DF16 /* Pods-ObjectDetection.release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Target Support Files/Pods-ObjectDetection/Pods-ObjectDetection.release.xcconfig"; sourceTree = "<group>"; };
+		FAB28D8228E98F250057DF16 /* Pods-ObjectDetection.debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Target Support Files/Pods-ObjectDetection/Pods-ObjectDetection.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -194,6 +196,8 @@
 		A3F013A889E9B190698071B6 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
+				FAB28D8228E98F250057DF16 /* Pods-ObjectDetection.debug.xcconfig */,
+				FAB28D8128E98F1C0057DF16 /* Pods-ObjectDetection.release.xcconfig */,
 				9B31503CAE9DB4AD10DFE57D /* Pods-ObjectDetection.debug.xcconfig */,
 				50E52467B7164586D41C0711 /* Pods-ObjectDetection.release.xcconfig */,
 			);
@@ -472,7 +476,7 @@
 		};
 		269E7483255CC56400B1D6CA /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9B31503CAE9DB4AD10DFE57D /* Pods-ObjectDetection.debug.xcconfig */;
+			baseConfigurationReference = FAB28D8228E98F250057DF16 /* Pods-ObjectDetection.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -497,7 +501,7 @@
 		};
 		269E7484255CC56400B1D6CA /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 50E52467B7164586D41C0711 /* Pods-ObjectDetection.release.xcconfig */;
+			baseConfigurationReference = FAB28D8128E98F1C0057DF16 /* Pods-ObjectDetection.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
