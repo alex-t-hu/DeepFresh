@@ -1,5 +1,0 @@
-
-platform :ios, '12.0'
-target 'HelloWorld' do
-    pod 'LibTorch-Lite-Nightly'
-end
